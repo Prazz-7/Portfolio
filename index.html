@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script>
+  if (sessionStorage.getItem('prajInternalNav')) {
+    var s = document.createElement('style');
+    s.textContent = '#loader{display:none!important}';
+    document.head.appendChild(s);
+  }
+</script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -150,7 +157,7 @@
   <div class="projects-wrapper">
 
     <!-- SAIM College Project -->
-    <a href="Project I/public/Home.html"
+    <a href="https://prazz-7.github.io/SAIM-Website/"
        class="project-link"
        target="_blank"
        rel="noopener noreferrer"
@@ -184,6 +191,41 @@
       </div>
     </a>
 
+    <!-- club website project --- IGNORE --- -->
+     <a href="https://irlprayushluitel.github.io/Orbit/"
+       class="project-link"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="text-decoration:none; color:inherit;">
+
+      <div class="project-card reveal-scale">
+        <div class="saim-card-inner">
+
+          <div class="project-thumb">
+            <div class="project-thumb-inner">Club</div>
+            <div class="project-thumb-tag">Featured Project</div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-title">SAIM College Club Webpage</div>
+
+            <div class="project-desc">
+              A fully designed and developed frontend for SAIM College's club webpage.
+              Built from scratch using HTML, CSS, and JavaScript with a focus on clean layout,
+              readability, and structured navigation for students and faculty.
+            </div>
+
+            <div class="project-tech">
+              <span class="tech-badge">HTML</span>
+              <span class="tech-badge">CSS</span>
+              <span class="tech-badge">JavaScript</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </a>
+
     <!-- Portfolio Project -->
      <a href="#index"
        class="project-link"
@@ -201,8 +243,7 @@
             <div class="project-title">Personal Portfolio</div>
 
             <div class="project-desc">
-              A fully designed and developed frontend for my personal portfolio website, built from scratch using HTML, CSS, and JavaScript. 
-              Smooth animations have also been incorporated to enhance the user experience and interactivity.
+              A fully designed and developed frontend for my personal portfolio website, built from scratch using HTML, CSS, and JavaScript. Smooth animations have also been incorporated to enhance the user experience and interactivity.
 
             </div>
 
@@ -258,6 +299,7 @@
     <a class="contact-link" href="mailto:prajiprazz@email.com">✉ Email</a>
     <a class="contact-link" href="https://www.linkedin.com/in/prajina-pokhrel/" target="_blank">in LinkedIn</a>
     <a class="contact-link" href="https://github.com/Prazz-7" target="_blank">{} GitHub</a>
+    <a class="contact-link" href="https://www.instagram.com/_prazz_j.m._/" target="_blank">📷 Instagram</a>
   </div>
 </section>
 
@@ -267,12 +309,21 @@
 </footer>
 
 <script>
-  /* ── Loader ── */
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('loader').classList.add('done');
-    }, 1300);
-  });
+/* ── Loader ── */
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  if (sessionStorage.getItem('prajInternalNav')) {
+    sessionStorage.removeItem('prajInternalNav');
+    if (loader) loader.style.display = 'none';
+  } else {
+    setTimeout(() => loader.classList.add('done'), 1000);
+  }
+});
+
+/* ── Set flag when leaving to contact page ── */
+document.querySelectorAll('a[href="contactAnimated.html"]').forEach(link => {
+  link.addEventListener('click', () => sessionStorage.setItem('prajInternalNav', 'true'));
+});
 
   /* ── Custom cursor ── */
   const cur = document.getElementById('cursor');
